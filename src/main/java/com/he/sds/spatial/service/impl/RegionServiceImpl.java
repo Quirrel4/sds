@@ -3,7 +3,7 @@ package com.he.sds.spatial.service.impl;
 
 import com.he.sds.common.exception.BusinessException;
 import com.he.sds.spatial.common.FeatureUtilities;
-import com.he.sds.spatial.dao.RegionDao;
+import com.he.sds.spatial.Mapper.RegionMapper;
 import com.he.sds.spatial.entity.Region;
 import com.he.sds.spatial.entity.RegionCenter;
 import com.he.sds.spatial.entity.RegionType;
@@ -20,12 +20,12 @@ import java.util.List;
 @Service
 public class RegionServiceImpl implements RegionService {
     @Autowired
-    private RegionDao regionDao;
+    private RegionMapper regionMapper;
 
     @Override
     public String findRegionByCode(String reginCode) {
         String regionJson = null;
-        Region queryRegion = regionDao.findRegionByCode(
+        Region queryRegion = regionMapper.findRegionByCode(
                 regionTableByCode(reginCode).getName(),
                 reginCode
         );
@@ -39,7 +39,7 @@ public class RegionServiceImpl implements RegionService {
 
     @Override
     public String findRgionCenterByCode(String reginCode) {
-        return regionDao.findRgionCenterByCode(
+        return regionMapper.findRgionCenterByCode(
                 regionTableByCode(reginCode).getName(),
                 reginCode
         );
@@ -48,7 +48,7 @@ public class RegionServiceImpl implements RegionService {
     @Override
     public String findAroundRegions(String reginCode) {
         String result = null;
-        List<Region> regionLsit = regionDao.findAroundRegions(
+        List<Region> regionLsit = regionMapper.findAroundRegions(
                 regionTableByCode(reginCode).getName(),
                 reginCode
         );
@@ -70,7 +70,7 @@ public class RegionServiceImpl implements RegionService {
             throw new BusinessException("新政区编号输入错误");
         }
 
-        List<Region> regionLsit = regionDao.findRegionsByParentCode(
+        List<Region> regionLsit = regionMapper.findRegionsByParentCode(
                 regionType.getName(),
                 getlikeCode(parentCode)
         );
@@ -91,7 +91,7 @@ public class RegionServiceImpl implements RegionService {
             throw new IllegalArgumentException("新政区编号输入错误");
         }
 
-        return regionDao.findRegionCentersByParentCode(
+        return regionMapper.findRegionCentersByParentCode(
                 regionType.getName(),
                 getlikeCode(parentCode)
         );

@@ -1,4 +1,4 @@
-package com.he.sds.spatial.dao;
+package com.he.sds.spatial.Mapper;
 
 
 import com.he.sds.spatial.entity.Region;
@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Mapper
-public interface RegionDao {
+public interface RegionMapper {
     public Region findRegionByCode(
             @Param("reginTable") String reginTable,
             @Param("reginCode") String reginCode

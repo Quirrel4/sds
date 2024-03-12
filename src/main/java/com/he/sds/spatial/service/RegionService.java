@@ -1,6 +1,5 @@
 package com.he.sds.spatial.service;
 
-import com.gis3c.spatial.entity.RegionCenter;
 import com.he.sds.spatial.entity.RegionCenter;
 
 import java.util.List;

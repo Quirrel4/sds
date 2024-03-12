@@ -1,6 +1,6 @@
 package com.he.sds.spatial.service;
 
-import com.gis3c.spatial.entity.ModelRiver;
+
 import com.he.sds.spatial.entity.ModelRiver;
 
 import java.util.List;

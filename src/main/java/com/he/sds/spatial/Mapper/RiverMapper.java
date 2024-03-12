@@ -1,4 +1,4 @@
-package com.he.sds.spatial.dao;
+package com.he.sds.spatial.Mapper;
 
 
 import com.he.sds.spatial.entity.ModelRiver;
@@ -11,7 +11,7 @@ import java.util.Set;
 
 
 @Mapper
-public interface RiverDao {
+public interface RiverMapper {
     public List<SeparatedRiver> findRiversByStationCodes(@Param("stationCodes") Set<String> stationCodes);
     public List<SeparatedRiver> findRiversByRiverCodes(@Param("riverCodes") Set<String> riverCodes);
 

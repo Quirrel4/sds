@@ -67,6 +67,8 @@ create table sds_ol_layer_tile(
 );
 
 
+
+
 --图层表
 create table sds_ol_layer(
                                layerId    varchar(50) not null PRIMARY KEY,
@@ -85,6 +87,43 @@ create table sds_ol_layer(
 );
 
 ALTER TABLE 'sds_ol_layer' ALTER COLUMN opacity type numeric(1,5);
+
+--取样线表
+create table sds_sample_line(
+                                lineId varchar(50) not null PRIMARY KEY,
+                                layerId varchar(50) not null,
+                                lineName  varchar(50) not null,
+                                lineSource GEOMETRY(LineString, 4326) not null,
+                                description varchar(50) not null
+);
+
+--矿山切片表
+create table  vertical_mine_section(
+                               sectionId varchar(50) not null primary key,
+                               sectionName varchar(50) not null,
+                               sectionSourceId varchar(50) not null,
+                               sampleLineId varchar(50) not null,
+                               description varchar(50)
+);
+
+create table vertical_min_section_source(
+                               sourceId varchar(50) not null primary key,
+                               sectionId varchar(50) not null,
+                               lineSource GEOMETRY(LineString, 4326)[] not null,
+                               rockId varchar(50) not null,
+                               description varchar(50)
+);
+
+create table rock_byte_data(
+                               rockId varchar(50) not null primary key,
+                               rockName varchar(50) not null,
+                               legend varchar(50) not null,
+                               description varchar(50)
+);
+
+
+
+
 
 --ArcGIS切片服务
 create table sds_ol_source_tilearcgisrest(

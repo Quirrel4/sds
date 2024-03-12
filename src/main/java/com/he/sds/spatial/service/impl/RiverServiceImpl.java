@@ -3,7 +3,7 @@ package com.he.sds.spatial.service.impl;
 
 import com.he.sds.common.exception.BusinessException;
 import com.he.sds.spatial.common.FeatureUtilities;
-import com.he.sds.spatial.dao.RiverDao;
+import com.he.sds.spatial.Mapper.RiverMapper;
 import com.he.sds.spatial.entity.ModelRiver;
 import com.he.sds.spatial.entity.SeparatedRiver;
 import com.he.sds.spatial.service.RiverService;
@@ -21,13 +21,13 @@ import java.util.Set;
 @Service
 public class RiverServiceImpl implements RiverService {
     @Autowired
-    private RiverDao riverDao;
+    private RiverMapper riverMapper;
 
     @Override
     public String findRiversByStationCodes(Set<String> stationCodes,Map<String,String> sufaceStations) {
         String riverJson = null;
         List<SeparatedRiver> riverList
-                = riverDao.findRiversByStationCodes(stationCodes);
+                = riverMapper.findRiversByStationCodes(stationCodes);
         if(sufaceStations != null){
             riverList.forEach(separatedRiver -> {
                 if(sufaceStations.keySet().contains(separatedRiver.getStationCode())){
@@ -49,7 +49,7 @@ public class RiverServiceImpl implements RiverService {
     public String findRiversByRiverCodes(Set<String> riverCodes,Map<String,String> sufaceStations) {
         String riverJson = null;
         List<SeparatedRiver> riverList
-                = riverDao.findRiversByRiverCodes(riverCodes);
+                = riverMapper.findRiversByRiverCodes(riverCodes);
         if(sufaceStations != null){
             riverList.forEach(separatedRiver -> {
                if(separatedRiver.getStationCode() != null
@@ -70,14 +70,14 @@ public class RiverServiceImpl implements RiverService {
 
     @Override
     public List<ModelRiver> findModelRiverInfo() {
-        return riverDao.findModelRiverInfo();
+        return riverMapper.findModelRiverInfo();
     }
 
     @Override
     public String findModelRiverByName(String riverName) {
         String riverJson = null;
         List<ModelRiver> queryRiver
-                = riverDao.findModelRiverByName(riverName);
+                = riverMapper.findModelRiverByName(riverName);
         try {
             riverJson = FeatureUtilities.JavaBeans2Json(queryRiver);
         } catch (IllegalAccessException | IOException e) {

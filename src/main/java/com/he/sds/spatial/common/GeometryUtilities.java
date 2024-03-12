@@ -101,6 +101,7 @@ public class GeometryUtilities {
         return resultWkt;
     }
 
+/*
     public static Point JSONObject2Point(JSONObject jsonObj){
         Point resultPoint = null;
         if(jsonObj != null){
@@ -169,6 +170,7 @@ public class GeometryUtilities {
         }
         return resultPolygon;
     }
+*/
 
     public static ReferencedEnvelope Geometry2Envelope(Geometry geometry){
         ReferencedEnvelope resultEnvelope = null;
