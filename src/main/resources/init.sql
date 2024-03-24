@@ -109,7 +109,8 @@ create table  vertical_mine_section(
 create table vertical_min_section_source(
                                sourceId varchar(50) not null primary key,
                                sectionId varchar(50) not null,
-                               lineSource GEOMETRY(LineString, 4326)[] not null,
+                               -- lineSource GEOMETRY(LineString, 4326)[] not null,
+                               -- source varchar(50) not null, 存储到云服务器，依据取样线中点坐标范围性缓存，
                                rockId varchar(50) not null,
                                description varchar(50)
 );
@@ -150,14 +151,14 @@ create table sds_ol_source_tilesupermaprest(
 create table sds_ol_source_vector(
                                        sourceid    varchar(50) not null PRIMARY KEY,
                                        sourcename    varchar(50) not null,
-                                       logo boolean,
+                                       logo boolean,                                    --是否存在
                                        url    varchar(50),
                                        useSpatialIndex boolean,
                                        wrapX    boolean,
                                        description varchar(50)
 );
 
---wmts服务
+--wmts服务，涉及到切片，切片的处理逻辑由ol完成
 create table sds_ol_source_wmts(
                                      sourceid    varchar(50) not null PRIMARY KEY,
                                      sourcename    varchar(50) not null,
@@ -169,14 +170,18 @@ create table sds_ol_source_wmts(
                                      description varchar(50)
 );
 
+--地图数据源
 create table sds_ol_source(
                                 sourceId    varchar(50) not null PRIMARY KEY,
                                 sourceName    varchar(50) not null,
                                 type    varchar(50) not null,
-                                projection    varchar(50) not null,
-                                options   jsonb,
+                                projection    varchar(50) not null,             --投影方式
+                                options   jsonb,                                -- ol要求的一些其他属性
                                 description varchar(50)
 );
+--经纬度投影（例如 EPSG:4326）：地图数据使用经度和纬度来表示位置，是一种最常见的地理坐标系统。
+
+--Web Mercator 投影（例如 EPSG:3857）：一种用于 Web 地图的常用投影方式，特别适用于在 Web 上展示地图数据。
 
 
 --样式表

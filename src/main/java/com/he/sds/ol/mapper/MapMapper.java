@@ -1,10 +1,10 @@
 package com.he.sds.ol.mapper;
 
+import com.he.sds.ol.entity.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 
