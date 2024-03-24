@@ -2,19 +2,19 @@
 create table sds_ol_map(
                              mapid    varchar(50) not null PRIMARY KEY,
                              mapname varchar(50) not null,
-                             view    jsonb not null,
-                             controls    varchar(50) [],
-                             pixelRatio     integer,
-                             interactions varchar(50) [],
-                             layers    varchar(50) [],
-                             logo    boolean,
-                             overlays    varchar(50) [],
+                             view    jsonb not null,            -- 地图的视图配置
+                             controls    varchar(50) [],        -- 控件
+                             pixelRatio     integer,            --像素比率，整型
+                             interactions varchar(50) [],       --交互方式
+                             layers    varchar(50) [],          -- 图层名称
+                             logo    boolean,                   -- 是否显示logo
+                             overlays    varchar(50) [],        -- 覆盖层
                              description varchar(50)
 );
 
---视图图层
+--视图 描述中心点，缩放级别，旋转角度，投影方式等属性
 create table sds_ol_view(
-                              viewid    varchar(50) not null PRIMARY KEY,
+                              viewid    varchar(50) not null PRIMARY KEY,   --
                               viewname    varchar(50) not null,
                               center    double precision ARRAY[2],
                               extent  double precision	ARRAY[4],
@@ -22,11 +22,11 @@ create table sds_ol_view(
                               minresolution    varchar(50),
                               maxzoom    int,
                               minzoom    int,
-                              zoom    int,
+                              zoom    int,      --缩放
                               projection    varchar(50),
-                              resolution    varchar(50),
+                              resolution    varchar(50),    --分辨率
                               resolutions    varchar(50) ARRAY,
-                              rotation    NUMERIC(7,4),
+                              rotation    NUMERIC(7,4),     -- 旋转角度
                               description varchar(50)
 );
 
@@ -74,7 +74,7 @@ create table sds_ol_layer(
                                layerId    varchar(50) not null PRIMARY KEY,
                                layerName    varchar(50) not null,
                                aliasName   varchar(50),
-                               opacity  numeric,
+                               opacity  numeric(1,5),
                                source   varchar(50),
                                visible    boolean,
                                extent numeric ARRAY[4],
@@ -86,7 +86,7 @@ create table sds_ol_layer(
                                description varchar(50)
 );
 
-ALTER TABLE 'sds_ol_layer' ALTER COLUMN opacity type numeric(1,5);
+ALTER TABLE sds_ol_layer ALTER COLUMN opacity type numeric(1,5);
 
 --取样线表
 create table sds_sample_line(
@@ -151,7 +151,7 @@ create table sds_ol_source_tilesupermaprest(
 create table sds_ol_source_vector(
                                        sourceid    varchar(50) not null PRIMARY KEY,
                                        sourcename    varchar(50) not null,
-                                       logo boolean,                                    --是否存在
+                                       logo boolean,
                                        url    varchar(50),
                                        useSpatialIndex boolean,
                                        wrapX    boolean,
