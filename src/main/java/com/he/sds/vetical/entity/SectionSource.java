@@ -5,10 +5,10 @@ import lombok.Data;
 
 
 @Data
-public class SectionSource {
+public abstract class SectionSource {
     String sourceId;
     String sectionId;
     Geometry[] lineSource;
-    String rockId;
+    String materialId;
     String description;
 }
